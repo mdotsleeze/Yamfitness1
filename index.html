@@ -5,26 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yam Fitness</title>
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background-color: #0D0D0D; }
-        .wrapper-container { position: relative; width: 100vw; height: 100vh; overflow: hidden; }
-        iframe { border: none; width: 100%; height: 100%; }
-        /* Creates an invisible mask to block the bottom right corner click target zone */
+        /* Force body to act as the absolute boundary layer */
+        html, body { 
+            margin: 0; 
+            padding: 0; 
+            width: 100vw; 
+            height: 100vh; 
+            overflow: hidden; 
+            background-color: #0D0D0D;
+            position: relative;
+        }
+        
+        /* The main app window */
+        iframe { 
+            border: none; 
+            width: 100%; 
+            height: 100%; 
+            display: block;
+        }
+        
+        /* A solid black block built to physically sit ON TOP of the Base44 badge */
         .badge-mask { 
             position: absolute; 
             bottom: 0; 
             right: 0; 
-            width: 180px; 
-            height: 50px; 
-            background-color: #0D0D0D; 
-            z-index: 99999; 
+            width: 230px; /* Slightly widened to guarantee coverage */
+            height: 60px;  /* Height to cover the orange sun icon and text */
+            background-color: #0D0D0D !important; 
+            z-index: 2147483647 !important; /* Forces this box to the absolute top layer */
             pointer-events: auto;
         }
     </style>
 </head>
 <body>
-    <div class="wrapper-container">
-        <iframe src="https://yam-fitness-flow.base44.app"></iframe>
-        <div class="badge-mask"></div>
-    </div>
+
+    <!-- This block physically blacks out the bottom right corner -->
+    <div class="badge-mask"></div>
+
+    <!-- Your actual app runs here -->
+    <iframe src="https://yam-fitness-flow.base44.app"></iframe>
+
 </body>
 </html>
